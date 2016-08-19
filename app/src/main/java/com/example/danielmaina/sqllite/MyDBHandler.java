@@ -2,6 +2,7 @@ package com.example.danielmaina.sqllite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -59,9 +60,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     //method to delete a row(product)from the database
+    //for a product to be deleted, you have to type its name in the edittext and then press delete
+    //the product name in the database corresponding to the product name in the edittext is then deleted
     public void deleteProduct(String productName){
-
-    }
+        SQLiteDatabase sqLiteDatabase=getWritableDatabase();
+        sqLiteDatabase.execSQL("DELETE FROM"+TABLE_PRODUCTS+"WHERE"+COLUMN_PRODUCTNAME
+        + "=\""+productName+"\";");
+            }
 
 
 
@@ -69,8 +74,39 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     //method to convert the databses into a string so that the contents in the said database can
     //in a certain view-maybe  listView or whatever
+    public String databaseToString(){
+        String dbString = "";
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        String query ="SELECT * FROM"+TABLE_PRODUCTS+"WHERE 1";
+        //for the above statement *=every column , 1=every row
+
+        //Cursor points to a location in your results
+        Cursor c = sqLiteDatabase.rawQuery(query,null);
+        //move the cursor to the very first row of your results
+        c.moveToFirst()
+
+
+
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
