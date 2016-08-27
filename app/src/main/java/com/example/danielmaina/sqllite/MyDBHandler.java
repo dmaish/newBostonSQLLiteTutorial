@@ -49,7 +49,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
 
     //adding a new row(product) to the database
-    public void addProduct(Product product){
+    //the following method takes the Products class as a parametre
+    public void addProduct(Products product){
         //contentValues is an inbuilt class that allows you to add rows to your database
         //allows you to set values for different columns and insert them in one statement
         ContentValues values =new ContentValues();
@@ -83,8 +84,19 @@ public class MyDBHandler extends SQLiteOpenHelper {
         //Cursor points to a location in your results
         Cursor c = sqLiteDatabase.rawQuery(query,null);
         //move the cursor to the very first row of your results
-        c.moveToFirst()
+        c.moveToFirst();
 
+        //the following code loops through the items in the database and adds them as a string
+        //to be printed in whatever view
+        while (!c.isAfterLast()){
+            if(c.getString(c.getColumnIndex("productname"))!=null){
+                dbString += c.getString(c.getColumnIndex("productname"));
+                dbString += "\n";
+            }
+        }
+
+        sqLiteDatabase.close();
+        return dbString;
 
 
     }
