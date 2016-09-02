@@ -27,9 +27,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
     @Override
     //instantiates the database -the table and its constituent columns
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query ="CREATE TABLE" +TABLE_PRODUCTS+ "("+COLUMN_ID +
-                "INTEGER PRIMARY KEY AUTOINCREMENT" +
-                COLUMN_PRODUCTNAME + "TEXT" +
+        String query ="CREATE TABLE "  + TABLE_PRODUCTS + " ( " + COLUMN_ID  +
+                " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMN_PRODUCTNAME + " TEXT" +
                 ");";
         //executing the query created above
     sqLiteDatabase.execSQL(query);
@@ -38,10 +38,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase
+                                      sqLiteDatabase, int i, int i1) {
 
         //if database has changed,the current table will be deleted using the following command
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS" + TABLE_PRODUCTS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
         //the the oncreate method below will be run to create the new table(upgrading
         onCreate(sqLiteDatabase);
 
@@ -65,10 +66,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
     //the product name in the database corresponding to the product name in the edittext is then deleted
     public void deleteProduct(String productName){
         SQLiteDatabase sqLiteDatabase=getWritableDatabase();
-        sqLiteDatabase.execSQL("DELETE FROM"+TABLE_PRODUCTS+"WHERE"+COLUMN_PRODUCTNAME
-        + "=\""+productName+"\";");
+        sqLiteDatabase.execSQL("DELETE FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_PRODUCTNAME + "=\"" + productName + "\";");
             }
-
 
 
 
@@ -78,7 +77,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public String databaseToString(){
         String dbString = "";
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        String query ="SELECT * FROM"+TABLE_PRODUCTS+"WHERE 1";
+        String query ="SELECT * FROM "+TABLE_PRODUCTS+" WHERE 1";
         //for the above statement *=every column , 1=every row
 
         //Cursor points to a location in your results

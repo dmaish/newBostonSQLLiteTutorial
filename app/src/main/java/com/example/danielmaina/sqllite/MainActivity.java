@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         Products product = new Products(myEditext.getText().toString());
         dbHandler.addProduct(product);
     }
+
     //Delete button onClick method
     public void deleteButtonClicked(View view){
         String inputText = myTextView.getText().toString();
