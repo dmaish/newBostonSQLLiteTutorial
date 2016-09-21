@@ -1,5 +1,6 @@
 package com.example.danielmaina.sqllite;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -45,4 +46,45 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     }
 
+
+    //adding a new row(product) to the database
+    public void addProduct(Product product){
+        //contentValues is an inbuilt class that allows you to add rows to your database
+        //allows you to set values for different columns and insert them in one statement
+        ContentValues values =new ContentValues();
+        values.put(COLUMN_PRODUCTNAME,product.get_productname());
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.insert(TABLE_PRODUCTS,null,values);
+        sqLiteDatabase.close();
+    }
+
+    //method to delete a row(product)from the database
+    public void deleteProduct(String productName){
+
+    }
+
+
+
+
+
+    //method to convert the databses into a string so that the contents in the said database can
+    //in a certain view-maybe  listView or whatever
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
