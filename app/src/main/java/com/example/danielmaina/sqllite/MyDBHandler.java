@@ -23,8 +23,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     @Override
+    //instantiates the database -the table and its constituent columns
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query ="CREATE TABLE" + "{"+COLUMN_ID +
+        String query ="CREATE TABLE" +TABLE_PRODUCTS+ "{"+COLUMN_ID +
                 "INTEGER PRIMARY KEY AUTOINCREMENT" +
                 COLUMN_PRODUCTNAME + "TEXT" +
                 "};";
