@@ -25,18 +25,22 @@ public class MyDBHandler extends SQLiteOpenHelper {
     @Override
     //instantiates the database -the table and its constituent columns
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query ="CREATE TABLE" +TABLE_PRODUCTS+ "{"+COLUMN_ID +
+        String query ="CREATE TABLE" +TABLE_PRODUCTS+ "("+COLUMN_ID +
                 "INTEGER PRIMARY KEY AUTOINCREMENT" +
                 COLUMN_PRODUCTNAME + "TEXT" +
-                "};";
+                ");";
+        //executing the query created above
     sqLiteDatabase.execSQL(query);
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+        //if database has changed,the current table will be deleted using the following command
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS" + TABLE_PRODUCTS);
+        //the the oncreate method below will be run to create the new table(upgrading
         onCreate(sqLiteDatabase);
 
     }
